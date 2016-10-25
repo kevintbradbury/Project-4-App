@@ -13,6 +13,7 @@
 		0A9DA9621DBFBBAA00B37581 /* Mi_Memoir_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA9601DBFBBAA00B37581 /* Mi_Memoir_App.xcdatamodeld */; };
 		0A9DA9641DBFBBAA00B37581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9DA9631DBFBBAA00B37581 /* Assets.xcassets */; };
 		0A9DA9671DBFBBAA00B37581 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9DA9651DBFBBAA00B37581 /* LaunchScreen.storyboard */; };
+		F7BAF5AF6C3D9E7F2C62C909 /* Pods_Mi_Memoir_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		0A9DA9631DBFBBAA00B37581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A9DA9661DBFBBAA00B37581 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A9DA9681DBFBBAA00B37581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F1E4306D18DAF34DD3B8E27 /* Pods-Mi-Memoir-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mi-Memoir-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App.debug.xcconfig"; sourceTree = "<group>"; };
+		4D3BE8150D204C147A478B1A /* Pods-Mi-Memoir-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mi-Memoir-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App.release.xcconfig"; sourceTree = "<group>"; };
+		E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mi_Memoir_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BAF5AF6C3D9E7F2C62C909 /* Pods_Mi_Memoir_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				0A9DA9581DBFBBAA00B37581 /* Mi-Memoir-App */,
 				0A9DA9571DBFBBAA00B37581 /* Products */,
+				E34BFD6AFD80A3ECA93FD633 /* Pods */,
+				AA3294F56E2602A4393DE056 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = "Mi-Memoir-App";
 			sourceTree = "<group>";
 		};
+		AA3294F56E2602A4393DE056 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E34BFD6AFD80A3ECA93FD633 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F1E4306D18DAF34DD3B8E27 /* Pods-Mi-Memoir-App.debug.xcconfig */,
+				4D3BE8150D204C147A478B1A /* Pods-Mi-Memoir-App.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A9DA96B1DBFBBAA00B37581 /* Build configuration list for PBXNativeTarget "Mi-Memoir-App" */;
 			buildPhases = (
+				78BC36C1EEB70D74BAE02FD6 /* 📦 Check Pods Manifest.lock */,
 				0A9DA9521DBFBBAA00B37581 /* Sources */,
 				0A9DA9531DBFBBAA00B37581 /* Frameworks */,
 				0A9DA9541DBFBBAA00B37581 /* Resources */,
+				4EDD3BC73A73C8C7BCD6E3B1 /* 📦 Embed Pods Frameworks */,
+				4AA568B1B69FDBE40936949D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -100,6 +127,7 @@
 					0A9DA9551DBFBBAA00B37581 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3TAADZBCK9;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -134,6 +162,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4AA568B1B69FDBE40936949D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EDD3BC73A73C8C7BCD6E3B1 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78BC36C1EEB70D74BAE02FD6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0A9DA9521DBFBBAA00B37581 /* Sources */ = {
@@ -261,6 +337,7 @@
 		};
 		0A9DA96C1DBFBBAA00B37581 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F1E4306D18DAF34DD3B8E27 /* Pods-Mi-Memoir-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3TAADZBCK9;
@@ -274,6 +351,7 @@
 		};
 		0A9DA96D1DBFBBAA00B37581 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D3BE8150D204C147A478B1A /* Pods-Mi-Memoir-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3TAADZBCK9;
@@ -304,6 +382,7 @@
 				0A9DA96D1DBFBBAA00B37581 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -1,0 +1,6 @@
+framework module Pods_Mi_Memoir_App {
+  umbrella header "Pods-Mi-Memoir-App-umbrella.h"
+
+  export *
+  module * { export * }
+}
