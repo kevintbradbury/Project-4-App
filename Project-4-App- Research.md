@@ -38,6 +38,7 @@ Demographics: What percentage of your photos do you print or make hardcopies of?
 If you print photos from your mobile device, what method do you use to print them?
 What factors determine the method you use to share those photos?
 
+##Competitive Analysis
 ![Alt](/Project%204-Competitive%20Analysis.jpg)
 
 ##Prioritized Features:
