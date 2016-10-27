@@ -9,5 +9,7 @@ target 'Mi-Memoir-App' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'PrintIO'
+  
 
 end

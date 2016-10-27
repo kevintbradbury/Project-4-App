@@ -18,6 +18,7 @@
 		0AE55C521DC119570036C94B /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE55C4E1DC119570036C94B /* video.png */; };
 		0AE55C531DC119570036C94B /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE55C4F1DC119570036C94B /* notes.png */; };
 		0AE55C541DC119570036C94B /* photo-library.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE55C501DC119570036C94B /* photo-library.png */; };
+		0AE55C5F1DC170C40036C94B /* PrintIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE55C5A1DC170C40036C94B /* PrintIO.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		F7BAF5AF6C3D9E7F2C62C909 /* Pods_Mi_Memoir_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,8 @@
 		0AE55C4E1DC119570036C94B /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = Pictures/video.png; sourceTree = "<group>"; };
 		0AE55C4F1DC119570036C94B /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = notes.png; path = Pictures/notes.png; sourceTree = "<group>"; };
 		0AE55C501DC119570036C94B /* photo-library.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photo-library.png"; path = "Pictures/photo-library.png"; sourceTree = "<group>"; };
+		0AE55C5A1DC170C40036C94B /* PrintIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrintIO.framework; path = Pods/PrintIO/PrintIO.framework; sourceTree = "<group>"; };
+		0AE55C651DC181500036C94B /* Mi-Memoir-App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mi-Memoir-App-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F1E4306D18DAF34DD3B8E27 /* Pods-Mi-Memoir-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mi-Memoir-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App.debug.xcconfig"; sourceTree = "<group>"; };
 		4D3BE8150D204C147A478B1A /* Pods-Mi-Memoir-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mi-Memoir-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mi-Memoir-App/Pods-Mi-Memoir-App.release.xcconfig"; sourceTree = "<group>"; };
 		E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mi_Memoir_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE55C5F1DC170C40036C94B /* PrintIO.framework in Frameworks */,
 				F7BAF5AF6C3D9E7F2C62C909 /* Pods_Mi_Memoir_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +88,7 @@
 				0A9DA9651DBFBBAA00B37581 /* LaunchScreen.storyboard */,
 				0A9DA9681DBFBBAA00B37581 /* Info.plist */,
 				0A9DA9601DBFBBAA00B37581 /* Mi_Memoir_App.xcdatamodeld */,
+				0AE55C651DC181500036C94B /* Mi-Memoir-App-Bridging-Header.h */,
 			);
 			path = "Mi-Memoir-App";
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 		AA3294F56E2602A4393DE056 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AE55C5A1DC170C40036C94B /* PrintIO.framework */,
 				E09BC1470171AA9FE481E8CE /* Pods_Mi_Memoir_App.framework */,
 			);
 			name = Frameworks;
@@ -375,12 +381,20 @@
 			baseConfigurationReference = 0F1E4306D18DAF34DD3B8E27 /* Pods-Mi-Memoir-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Mi-Memoir-App/Mi-Memoir-App.entitlements";
 				DEVELOPMENT_TEAM = 3TAADZBCK9;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/PrintIO",
+				);
 				INFOPLIST_FILE = "Mi-Memoir-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "K.Mi-Memoir-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mi-Memoir-App/Mi-Memoir-App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -390,12 +404,19 @@
 			baseConfigurationReference = 4D3BE8150D204C147A478B1A /* Pods-Mi-Memoir-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Mi-Memoir-App/Mi-Memoir-App.entitlements";
 				DEVELOPMENT_TEAM = 3TAADZBCK9;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/PrintIO",
+				);
 				INFOPLIST_FILE = "Mi-Memoir-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "K.Mi-Memoir-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mi-Memoir-App/Mi-Memoir-App-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
