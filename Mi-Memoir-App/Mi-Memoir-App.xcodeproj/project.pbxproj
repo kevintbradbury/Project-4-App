@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A35BE621DC588CB000ECF1C /* SecretKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35BE611DC588CB000ECF1C /* SecretKeyRequest.swift */; };
 		0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */; };
 		0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */; };
 		0A9DA95F1DBFBBAA00B37581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9DA95D1DBFBBAA00B37581 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A35BE611DC588CB000ECF1C /* SecretKeyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKeyRequest.swift; sourceTree = "<group>"; };
 		0A9DA9561DBFBBAA00B37581 /* Mi-Memoir-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mi-Memoir-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				0A9DA9581DBFBBAA00B37581 /* Mi-Memoir-App */,
+				0AE55C551DC119620036C94B /* Pictures */,
 				0A9DA9571DBFBBAA00B37581 /* Products */,
 				E34BFD6AFD80A3ECA93FD633 /* Pods */,
 				AA3294F56E2602A4393DE056 /* Frameworks */,
@@ -80,10 +83,10 @@
 			children = (
 				0AE55C4C1DC04C3F0036C94B /* Mi-Memoir-App.entitlements */,
 				0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */,
-				0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */,
 				0AE55C4A1DC042210036C94B /* MediaPullViewController.swift */,
 				0A9DA95D1DBFBBAA00B37581 /* Main.storyboard */,
-				0AE55C551DC119620036C94B /* Pictures */,
+				0A35BE611DC588CB000ECF1C /* SecretKeyRequest.swift */,
+				0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */,
 				0A9DA9631DBFBBAA00B37581 /* Assets.xcassets */,
 				0A9DA9651DBFBBAA00B37581 /* LaunchScreen.storyboard */,
 				0A9DA9681DBFBBAA00B37581 /* Info.plist */,
@@ -102,6 +105,7 @@
 				0AE55C501DC119570036C94B /* photo-library.png */,
 			);
 			name = Pictures;
+			path = "Mi-Memoir-App";
 			sourceTree = "<group>";
 		};
 		AA3294F56E2602A4393DE056 /* Frameworks */ = {
@@ -259,6 +263,7 @@
 				0AE55C4B1DC042210036C94B /* MediaPullViewController.swift in Sources */,
 				0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */,
 				0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */,
+				0A35BE621DC588CB000ECF1C /* SecretKeyRequest.swift in Sources */,
 				0A9DA9621DBFBBAA00B37581 /* Mi_Memoir_App.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
