@@ -8,7 +8,7 @@
 
 import Foundation
 
-var secretKeyReqstDictionary: [SecretKeyRequest] = []
+var secretKeyReqstDictionary: SecretKeyRequest?
 
 struct SecretKeyRequest {
     

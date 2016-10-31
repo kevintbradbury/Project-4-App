@@ -59,5 +59,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allows the app to access your photos to upload to the Walgreens Server</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allows the app to access your photos to upload to the Walgreens Server</string>
 </dict>
 </plist>
