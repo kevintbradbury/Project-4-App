@@ -22,11 +22,11 @@ import FBSDKShareKit
 /**
  A button for sharing content.
  */
-open class ShareButton<C: ContentProtocol>: UIView {
+public class ShareButton<C: ContentProtocol>: UIView {
   fileprivate var sdkShareButton: FBSDKShareButton
 
   /// The content to share.
-  open var content: C? = nil {
+  public var content: C? = nil {
     didSet {
       sdkShareButton.shareContent = content.flatMap(ContentBridger.bridgeToObjC)
     }
@@ -56,7 +56,7 @@ open class ShareButton<C: ContentProtocol>: UIView {
   /**
    Performs logic for laying out subviews.
    */
-  open override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
 
     sdkShareButton.frame = CGRect(origin: .zero, size: bounds.size)
@@ -65,7 +65,7 @@ open class ShareButton<C: ContentProtocol>: UIView {
   /**
    Resizes and moves the receiver view so it just encloses its subviews.
    */
-  open override func sizeToFit() {
+  public override func sizeToFit() {
     bounds.size = sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
   }
 
@@ -76,7 +76,7 @@ open class ShareButton<C: ContentProtocol>: UIView {
 
    - returns: A new size that fits the receiver’s subviews.
    */
-  open override func sizeThatFits(_ size: CGSize) -> CGSize {
+  public override func sizeThatFits(_ size: CGSize) -> CGSize {
     return sdkShareButton.sizeThatFits(size)
   }
 
@@ -85,7 +85,7 @@ open class ShareButton<C: ContentProtocol>: UIView {
 
    - returns: A size indicating the natural size for the receiving view based on its intrinsic properties.
    */
-  open override var intrinsicContentSize: CGSize {
+  public override var intrinsicContentSize: CGSize {
     return sdkShareButton.intrinsicContentSize
   }
 }

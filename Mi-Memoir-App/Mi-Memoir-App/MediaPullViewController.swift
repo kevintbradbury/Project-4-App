@@ -14,7 +14,11 @@ import MobileCoreServices
 import QuartzCore
 
 
+
+
 class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    
     
     @IBOutlet weak var addPhoto: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!

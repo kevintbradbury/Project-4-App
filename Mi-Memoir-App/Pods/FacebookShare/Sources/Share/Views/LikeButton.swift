@@ -27,12 +27,12 @@ import FBSDKShareKit
  currentAccessToken has "publish_actions" permission and the object is an Open Graph object, then the like can happen
  seamlessly without the fast-app-switch.
  */
-open class LikeButton: UIView {
+public class LikeButton: UIView {
 
   fileprivate var sdkLikeButton: FBSDKLikeButton
 
   /// If `true`, a sound is played when the reciever is toggled.
-  open var isSoundEnabled: Bool {
+  public var isSoundEnabled: Bool {
     get {
       return sdkLikeButton.isSoundEnabled
     }
@@ -42,7 +42,7 @@ open class LikeButton: UIView {
   }
 
   /// The object to like
-  open var object: LikableObject {
+  public var object: LikableObject {
     get {
       return LikableObject(sdkObjectType: sdkLikeButton.objectType, sdkObjectId: sdkLikeButton.objectID)
     }
@@ -86,7 +86,7 @@ open class LikeButton: UIView {
   /**
    Performs logic for laying out subviews.
    */
-  open override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
 
     sdkLikeButton.frame = CGRect(origin: .zero, size: bounds.size)
@@ -95,7 +95,7 @@ open class LikeButton: UIView {
   /**
    Resizes and moves the receiver view so it just encloses its subviews.
    */
-  open override func sizeToFit() {
+  public override func sizeToFit() {
     bounds.size = sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
   }
 
@@ -106,7 +106,7 @@ open class LikeButton: UIView {
 
    - returns: A new size that fits the receiver’s subviews.
    */
-  open override func sizeThatFits(_ size: CGSize) -> CGSize {
+  public override func sizeThatFits(_ size: CGSize) -> CGSize {
     return sdkLikeButton.sizeThatFits(size)
   }
 
@@ -115,7 +115,7 @@ open class LikeButton: UIView {
 
    - returns: A size indicating the natural size for the receiving view based on its intrinsic properties.
    */
-  open override var intrinsicContentSize: CGSize {
+  public override var intrinsicContentSize: CGSize {
     return sdkLikeButton.intrinsicContentSize
   }
 }

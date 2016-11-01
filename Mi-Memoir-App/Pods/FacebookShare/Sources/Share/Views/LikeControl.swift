@@ -26,7 +26,7 @@ import FBSDKShareKit
  Taps on the like button within this control will invoke an API call to the Facebook app through a fast-app-switch
  that allows the user to like the object. Upon return to the calling app, the view will update with the new state.
  */
-open class LikeControl: UIView {
+public class LikeControl: UIView {
   fileprivate let sdkLikeControl: FBSDKLikeControl
 
   /**
@@ -60,7 +60,7 @@ open class LikeControl: UIView {
   }
 
   /// The foreground color to use for the content of the control.
-  open var foregroundColor: UIColor {
+  public var foregroundColor: UIColor {
     get {
       return sdkLikeControl.foregroundColor
     }
@@ -70,7 +70,7 @@ open class LikeControl: UIView {
   }
 
   /// The object to like.
-  open var object: LikableObject {
+  public var object: LikableObject {
     get {
       return LikableObject(sdkObjectType: sdkLikeControl.objectType, sdkObjectId: sdkLikeControl.objectID)
     }
@@ -82,7 +82,7 @@ open class LikeControl: UIView {
   }
 
   /// The style to use for this control.
-  open var auxilaryStyle: AuxilaryStyle {
+  public var auxilaryStyle: AuxilaryStyle {
     get {
       return AuxilaryStyle(
         sdkStyle: sdkLikeControl.likeControlStyle,
@@ -106,7 +106,7 @@ open class LikeControl: UIView {
    if the text extends beyond the width specified by this property, the additional text is flowed to one or more new
    lines, thereby increasing the height of the receiver.
    */
-  open var preferredMaxLayoutWidth: CGFloat {
+  public var preferredMaxLayoutWidth: CGFloat {
     get {
       return sdkLikeControl.preferredMaxLayoutWidth
     }
@@ -116,7 +116,7 @@ open class LikeControl: UIView {
   }
 
   /// If `true`, a sound is played when the control is toggled.
-  open var isSoundEnabled: Bool {
+  public var isSoundEnabled: Bool {
     get {
       return sdkLikeControl.isSoundEnabled
     }
@@ -130,7 +130,7 @@ extension LikeControl {
   /**
    Performs logic for laying out subviews.
    */
-  open override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
 
     sdkLikeControl.frame = CGRect(origin: .zero, size: bounds.size)
@@ -139,7 +139,7 @@ extension LikeControl {
   /**
    Resizes and moves the receiver view so it just encloses its subviews.
    */
-  open override func sizeToFit() {
+  public override func sizeToFit() {
     bounds.size = sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
   }
 
@@ -150,7 +150,7 @@ extension LikeControl {
 
    - returns: A new size that fits the receiver’s subviews.
    */
-  open override func sizeThatFits(_ size: CGSize) -> CGSize {
+  public override func sizeThatFits(_ size: CGSize) -> CGSize {
     return sdkLikeControl.sizeThatFits(size)
   }
 
@@ -159,7 +159,7 @@ extension LikeControl {
 
    - returns: A size indicating the natural size for the receiving view based on its intrinsic properties.
    */
-  open override var intrinsicContentSize: CGSize {
+  public override var intrinsicContentSize: CGSize {
     return sdkLikeControl.intrinsicContentSize
   }
 }

@@ -24,18 +24,11 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.17.0):
     - FBSDKCoreKit
-  - PrintIO (1.8.21):
-    - PrintIO/Core (= 1.8.21)
-    - PrintIO/Text (= 1.8.21)
-  - PrintIO/Core (1.8.21)
-  - PrintIO/Text (1.8.21):
-    - PrintIO/Core
 
 DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
-  - PrintIO
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -45,8 +38,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
   FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
   FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
-  PrintIO: 409a94ccf854d4f4afc73fa69667da56c7b4b59b
 
-PODFILE CHECKSUM: 4826bae54fb4a118b163d7d1a98a395f3efb9c35
+PODFILE CHECKSUM: 0c0b3523f7b7fcf543673892479f533e5456667d
 
 COCOAPODS: 1.0.0
