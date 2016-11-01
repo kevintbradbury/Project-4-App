@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0A71E2A31DC8FE9100DFB45B"
+               BuildableName = "Mi-Memoir-AppTests.xctest"
+               BlueprintName = "Mi-Memoir-AppTests"
+               ReferencedContainer = "container:Mi-Memoir-App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

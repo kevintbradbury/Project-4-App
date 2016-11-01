@@ -70,12 +70,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-library.png" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-d6-Qyn">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-library.png" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-d6-Qyn">
                                                     <rect key="frame" x="0.0" y="0.0" width="126" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="EZG-d6-Qyn" secondAttribute="trailing" id="FIA-Tz-N8q"/>
+                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="top" secondItem="ebT-HP-snB" secondAttribute="top" id="SfH-Qj-IhB"/>
+                                            <constraint firstAttribute="bottom" secondItem="EZG-d6-Qyn" secondAttribute="bottom" constant="-2" id="Ylw-l0-F2U"/>
+                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="leading" secondItem="ebT-HP-snB" secondAttribute="leading" id="rAG-mP-XCn"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="EZG-d6-Qyn" id="p4s-4f-Rkt"/>
                                         </connections>

@@ -14,23 +14,13 @@ import MobileCoreServices
 import QuartzCore
 
 
-
-
 class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-    
     
     @IBOutlet weak var addPhoto: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.cancelPicker))
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.donePicker))
-        
-        navigationItem.setLeftBarButton(cancelButton, animated: true)
-        navigationItem.setRightBarButton(doneButton, animated: true)
         
         getSecretKeyRequest()
         collectionView.reloadData()
@@ -84,6 +74,21 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
         return true
     }
     
+    func uploadPhotos() -> Bool {
+        
+        let sha1EncodedString = secretKeyReqstDictionary?.secretKey.sha1()
+        
+        let utf8String = "PUT\n" + "\n" + "image/jpg\n" + "Fri, 30 Jan 2015 12:15:45 GMT\n" + "x-amz-security-token: \(secretKeyReqstDictionary?.sessionId)\n" + "/\(secretKeyReqstDictionary?.uploadUrl)/;IMAGE_PATH"
+        
+        let hmac = "$signature= hash_hmac('sha1', " + utf8String + "," + sha1EncodedString! + ", true);"
+        
+        let imageData = UIImageJPEGRepresentation(cellImage[0], 0.2)
+        
+        let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        
+        return true
+    }
+    
     @IBAction func addPhotoAction(_ sender: Any) {
         
         let picker = UIImagePickerController()
@@ -97,26 +102,25 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        let picker = UIImagePickerController()
-        picker.delegate = self
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.cancelPicker))
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.donePicker))
+//        
+//        navigationItem.setLeftBarButton(cancelButton, animated: true)
+//        navigationItem.setRightBarButton(doneButton, animated: true)
         
-        guard let image = info[UIImagePickerControllerOriginalImage] as? String else {return}
+        print(" imagePickerController info: \(info)")
         
-        if image == kUTTypeImage as String {
-            
-            var originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-            var editedImage = info[UIImagePickerControllerEditedImage] as! UIImage?
-            var imageToUse = editedImage != nil ? editedImage : originalImage
-            
-            cellImage.append(imageToUse!)
-            print("contents of cellImage are: \(cellImage)")
-            
-            dismiss(animated: true, completion: nil)
-        } else {
-            dismiss(animated: true, completion: {})
-        }
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        
+        cellImage.append(image)
+        print("contents of cellImage are: \(cellImage)")
+        
+        collectionView.reloadData()
+        dismiss(animated: true, completion: nil)
         
     }
+    
+    var photoPathsDictionary: [String: Any] = [:]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -126,12 +130,11 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        if indexPath.row == cellImage.count {
-            cell.imageView.image = nil;
-        }else{
-            cell.imageView.image = cellImage[indexPath.row] as UIImage
-        }
-        
+//        if cellImage[indexPath.row] != nil {
+//            
+//            cell.imageView.image = cellImage[indexPath.row] as UIImage
+//        
+//        }
         
         return cell
     }
@@ -156,7 +159,7 @@ extension MediaPullerView: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let paddingSpace = sectionInsets.left * (itemsPerRow)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth /   itemsPerRow
         
@@ -270,10 +273,7 @@ extension MediaPullerView: UICollectionViewDelegateFlowLayout {
     
 }
 
-protocol LimCameraImagePickerDelegate: class {
-    func donePicking(_ picker: MediaPullerView, didPickedUrls: [String])
-    func cancelPicking(_ picker: MediaPullerView)
-}
+
 
 
 
