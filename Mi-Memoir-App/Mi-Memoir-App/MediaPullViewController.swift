@@ -14,7 +14,7 @@ import MobileCoreServices
 import QuartzCore
 
 
-class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var addPhoto: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -102,11 +102,11 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.cancelPicker))
-//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.donePicker))
-//        
-//        navigationItem.setLeftBarButton(cancelButton, animated: true)
-//        navigationItem.setRightBarButton(doneButton, animated: true)
+        //        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.cancelPicker))
+        //        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.donePicker))
+        //
+        //        navigationItem.setLeftBarButton(cancelButton, animated: true)
+        //        navigationItem.setRightBarButton(doneButton, animated: true)
         
         print(" imagePickerController info: \(info)")
         
@@ -122,24 +122,21 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
     
     var photoPathsDictionary: [String: Any] = [:]
     
+    private let mainOperation = OperationQueue.main
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return cellImage.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-//        if cellImage[indexPath.row] != nil {
-//            
-//            cell.imageView.image = cellImage[indexPath.row] as UIImage
-//        
-//        }
+        cell.imageView?.image = self.cellImage[indexPath.row]
         
         return cell
     }
-    
-    private let mainOperation = OperationQueue.main
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -147,9 +144,8 @@ class MediaPullerView: UIViewController, UICollectionViewDelegate, UICollectionV
     
 }
 
-fileprivate let itemsPerRow: CGFloat = 2
-
-fileprivate let sectionInsets = UIEdgeInsets(top: 100.0, left: 40.0, bottom: 100.0, right: 40.0)
+let itemsPerRow: CGFloat = 2
+let sectionInsets = UIEdgeInsets(top: 100.0, left: 40.0, bottom: 100.0, right: 40.0)
 
 extension MediaPullerView: UICollectionViewDelegateFlowLayout {
     
@@ -159,7 +155,7 @@ extension MediaPullerView: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         
-        let paddingSpace = sectionInsets.left * (itemsPerRow)
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth /   itemsPerRow
         

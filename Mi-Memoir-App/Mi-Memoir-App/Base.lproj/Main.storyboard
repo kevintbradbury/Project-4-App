@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +30,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Oy4-HL-S4v" kind="show" id="b8b-m9-Exh"/>
+                                    <segue destination="Oy4-HL-S4v" kind="show" id="CG9-ia-rek"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,35 +58,39 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ute-dd-9pp">
-                                    <size key="itemSize" width="126" height="126"/>
+                                    <size key="itemSize" width="125" height="125"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ebT-HP-snB" customClass="CollectionViewCell" customModule="Mi_Memoir_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-library.png" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-d6-Qyn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="128"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="EZG-d6-Qyn" secondAttribute="trailing" id="FIA-Tz-N8q"/>
-                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="top" secondItem="ebT-HP-snB" secondAttribute="top" id="SfH-Qj-IhB"/>
-                                            <constraint firstAttribute="bottom" secondItem="EZG-d6-Qyn" secondAttribute="bottom" constant="-2" id="Ylw-l0-F2U"/>
-                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="leading" secondItem="ebT-HP-snB" secondAttribute="leading" id="rAG-mP-XCn"/>
+                                            <constraint firstAttribute="trailing" secondItem="EZG-d6-Qyn" secondAttribute="trailing" id="Ky7-uV-YZr"/>
+                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="leading" secondItem="ebT-HP-snB" secondAttribute="leading" id="VzC-yo-rXk"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="EZG-d6-Qyn" secondAttribute="bottom" constant="-11" id="Xnf-T0-dcB"/>
+                                            <constraint firstItem="EZG-d6-Qyn" firstAttribute="top" secondItem="ebT-HP-snB" secondAttribute="top" id="eCU-wb-iOI"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="EZG-d6-Qyn" id="p4s-4f-Rkt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="pUl-Rw-yLR" id="jg6-MY-Veu"/>
+                                    <outlet property="delegate" destination="pUl-Rw-yLR" id="ht9-Za-cpW"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRy-Ww-cRj">
                                 <rect key="frame" x="90" y="72" width="195" height="30"/>
