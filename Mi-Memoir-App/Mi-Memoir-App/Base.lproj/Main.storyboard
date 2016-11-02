@@ -57,15 +57,15 @@
                                 <rect key="frame" x="16" y="148" width="343" height="499"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ute-dd-9pp">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="ute-dd-9pp">
                                     <size key="itemSize" width="125" height="125"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ebT-HP-snB" customClass="CollectionViewCell" customModule="Mi_Memoir_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                        <rect key="frame" x="20" y="0.0" width="125" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
@@ -97,7 +97,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Photo"/>
                                 <connections>
-                                    <action selector="addPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="YM5-P5-LrY"/>
+                                    <action selector="addPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="Xjm-qt-odR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,7 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XC2-o5-McK"/>
                     <connections>
-                        <outlet property="addPhoto" destination="MRy-Ww-cRj" id="4de-Ym-Rkw"/>
+                        <outlet property="addPhotoButton" destination="MRy-Ww-cRj" id="cJC-dH-cfa"/>
                         <outlet property="collectionView" destination="UuB-Xl-7Bs" id="4he-PV-aik"/>
                     </connections>
                 </viewController>

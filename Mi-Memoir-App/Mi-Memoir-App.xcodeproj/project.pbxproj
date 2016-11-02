@@ -11,6 +11,7 @@
 		0A35BE641DC59137000ECF1C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35BE631DC59137000ECF1C /* CollectionViewCell.swift */; };
 		0A71E2A71DC8FE9100DFB45B /* Mi_Memoir_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2A61DC8FE9100DFB45B /* Mi_Memoir_AppTests.swift */; };
 		0A71E2AF1DC8FEDE00DFB45B /* SHA1_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2AE1DC8FEDE00DFB45B /* SHA1_Test.swift */; };
+		0A71E2B11DC9516200DFB45B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2B01DC9516200DFB45B /* ImagePicker.swift */; };
 		0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */; };
 		0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */; };
 		0A9DA95F1DBFBBAA00B37581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9DA95D1DBFBBAA00B37581 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		0A71E2A61DC8FE9100DFB45B /* Mi_Memoir_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mi_Memoir_AppTests.swift; sourceTree = "<group>"; };
 		0A71E2A81DC8FE9100DFB45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A71E2AE1DC8FEDE00DFB45B /* SHA1_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA1_Test.swift; sourceTree = "<group>"; };
+		0A71E2B01DC9516200DFB45B /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		0A9DA9561DBFBBAA00B37581 /* Mi-Memoir-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mi-Memoir-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				0AF0BC4C1DC82DEA0003814F /* Strings+.swift */,
 				0A35BE631DC59137000ECF1C /* CollectionViewCell.swift */,
 				0A9DA95D1DBFBBAA00B37581 /* Main.storyboard */,
+				0A71E2B01DC9516200DFB45B /* ImagePicker.swift */,
 				0A35BE611DC588CB000ECF1C /* SecretKeyRequest.swift */,
 				0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */,
 				0A9DA9631DBFBBAA00B37581 /* Assets.xcassets */,
@@ -347,6 +350,7 @@
 				0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */,
 				0A35BE641DC59137000ECF1C /* CollectionViewCell.swift in Sources */,
 				0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */,
+				0A71E2B11DC9516200DFB45B /* ImagePicker.swift in Sources */,
 				0A35BE621DC588CB000ECF1C /* SecretKeyRequest.swift in Sources */,
 				0A9DA9621DBFBBAA00B37581 /* Mi_Memoir_App.xcdatamodeld in Sources */,
 			);
@@ -552,6 +556,7 @@
 				0A71E2AD1DC8FE9100DFB45B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A9DA9511DBFBBAA00B37581 /* Build configuration list for PBXProject "Mi-Memoir-App" */ = {
 			isa = XCConfigurationList;

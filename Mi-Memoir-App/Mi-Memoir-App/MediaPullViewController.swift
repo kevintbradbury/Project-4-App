@@ -16,8 +16,20 @@ import QuartzCore
 
 class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var addPhoto: UIButton!
+    @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBAction func addPhotoAction(_ sender: Any) {
+        
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +45,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     var tempIndex : Int = 0
     var tempImage: UIImage?;
     
+    // Talk to the web ------------------------
     func getSecretKeyRequest() -> Bool {
         
         let walgreensKeyRequestURL = "https://services-qa.walgreens.com/api/util/mweb5url"
@@ -68,6 +81,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
             secretKeyReqstDictionary = secretKeyDictionary
             
             guard (secretKeyReqstDictionary != nil) else { return }
+            print(secretKeyReqstDictionary!)
             
         }
         dataTask.resume()
@@ -76,53 +90,76 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     func uploadPhotos() -> Bool {
         
+        let uploadURL = secretKeyReqstDictionary?.uploadUrl
+        
         let sha1EncodedString = secretKeyReqstDictionary?.secretKey.sha1()
         
-        let utf8String = "PUT\n" + "\n" + "image/jpg\n" + "Fri, 30 Jan 2015 12:15:45 GMT\n" + "x-amz-security-token: \(secretKeyReqstDictionary?.sessionId)\n" + "/\(secretKeyReqstDictionary?.uploadUrl)/;IMAGE_PATH"
+        let utf8String = "PUT\n" + "\n" + "image/jpg\n" + "Fri, 30 Jan 2015 12:15:45 GMT\n" + "x-amz-security-token: \(secretKeyReqstDictionary?.sessionId)\n" + "/\(secretKeyReqstDictionary?.uploadUrl)/;\(photoPathsArray[0])"
         
         let hmac = "$signature= hash_hmac('sha1', " + utf8String + "," + sha1EncodedString! + ", true);"
         
-        let imageData = UIImageJPEGRepresentation(cellImage[0], 0.2)
+        let hmacData = hmac.data(using: String.Encoding.utf8)!
         
-        let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        let base64String = hmacData.base64EncodedData(options: [])
         
+        let signedEncodedData = "$signedEncodedData = base64_encode(\(base64String));"
+        
+        let authorizationfield = "$AuthValue = " + "AWS" + secretKeyReqstDictionary?.accessKeyId + ":" + signedEncodedData + ";"
+        
+//        let photoUploadParameters = "PUT /myImage_01_30_2015_12154510.jpg HTTP/1.1",
+//        "Host:" : "\(secretKeyReqstDictionary?.upload)"
+//        Date: Fri, 30 Jan 2015 12:15:45 GMT
+//        Authorization: $AuthValue
+//        Content-Type: image/jpg
+//        Content-Length: 11434
+//        Expect: 100-continue
+//        x-amz-security-token: SESSION_ID"
+        
+        //Image Data
+        let imageData = UIImageJPEGRepresentation(cellImage[0], 1)
+        let base64ImageString = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        
+        //Setting URL
+        let url = URL(string: uploadURL!)
+        var request = URLRequest.init(url: url!)
+        
+        var error: JSONSerialization.WritingOptions
+        let session = URLSession.shared
+        
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: hmac, options: [])
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let dataTask = session.dataTask(with: request) {(data, response, error) -> Void in
+            
+            guard let unwrappedData = data else { return }
+            guard let jsonDictionary = (try? JSONSerialization.jsonObject(with: unwrappedData, options: [])) as? NSDictionary else { return }
+            
+            
+        }
         return true
     }
     
-    @IBAction func addPhotoAction(_ sender: Any) {
-        
-        let picker = UIImagePickerController()
-        
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        
-        present(picker, animated: true, completion: nil)
-        
-    }
-    
+    //Get Photos ----------------------------
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        //        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.cancelPicker))
-        //        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(MediaPullerView.donePicker))
-        //
-        //        navigationItem.setLeftBarButton(cancelButton, animated: true)
-        //        navigationItem.setRightBarButton(doneButton, animated: true)
-        
-        print(" imagePickerController info: \(info)")
         
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         
         cellImage.append(image)
-        print("contents of cellImage are: \(cellImage)")
+        
+        guard let imageString = info[UIImagePickerControllerOriginalImage] as? String else { return }
+        
+        photoPathsArray.append(imageString)
         
         collectionView.reloadData()
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
         
     }
     
-    var photoPathsDictionary: [String: Any] = [:]
+    var photoPathsArray: [String] = []
     
-    private let mainOperation = OperationQueue.main
+    let mainOperation = OperationQueue.main
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -138,136 +175,15 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         return cell
     }
     
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
 }
 
-let itemsPerRow: CGFloat = 2
-let sectionInsets = UIEdgeInsets(top: 100.0, left: 40.0, bottom: 100.0, right: 40.0)
 
-extension MediaPullerView: UICollectionViewDelegateFlowLayout {
-    
-    //1
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
-        
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth /   itemsPerRow
-        
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-    
-    //3
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    // 4
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
-    
-    func donePicker () {
-        if isUploading {return}
-        
-        cellImage.removeAll()
-        
-        /*        if loadingNotification == nil {
-         loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-         loadingNotification!.mode = MBProgressHUDModeIndeterminate
-         }*/
-        doUpload()
-    }
-    
-    func cancelPicker () {
-        if isUploading {return}
-        cellImage.removeAll()
-        
-    }
-    
-    func doUpload () {
-        
-        isUploading = true
-        
-        //        loadingNotification!.labelText = "Uploading \(tempIndex+1) of \(loadedImages.count)"
-        
-        let date = Date()
-        let timestamp = NSInteger(date.timeIntervalSince1970)
-        let S3UploadKeyName = String(timestamp)
-        
-        print(S3UploadKeyName)
-        
-        //Create a test file in the temporary directory
-        self.uploadFileURL = URL(fileURLWithPath: NSTemporaryDirectory() + S3UploadKeyName)
-        print(self.uploadFileURL)
-        
-        tempImage = cellImage[tempIndex]
-        let data = UIImageJPEGRepresentation(tempImage!, 0.5)
-        
-        var error: NSError? = nil
-        if FileManager.default.fileExists(atPath: self.uploadFileURL!.path) {
-            //FileManager.default.removeItemAtPath(self.uploadFileURL!.path!, error: &error)
-        }
-        
-        //data.writeToURL(self.uploadFileURL!, atomically: true)
-        
-        /*        let uploadRequest1 : AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
-         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-         
-         uploadRequest1.bucket = S3BucketName
-         uploadRequest1.key =  "Uploads/" + S3UploadKeyName
-         uploadRequest1.body = self.uploadFileURL
-         uploadRequest1.ACL = AWSS3ObjectCannedACL.PublicRead
-         
-         let task = transferManager.upload(uploadRequest1)
-         
-         task.continueWithBlock { (task) -> AnyObject! in
-         
-         self.isuploading = false
-         
-         if task.error != nil {
-         println("Error: \(task.error)")
-         self.loadedImages.removeAll()
-         //                MBProgressHUD.hideAllHUDsForView(self.view, animated: false)
-         
-         self.delegate?.cancelPicking(self)
-         } else {
-         ++self.tempIndex
-         var url = "--your url - \(S3UploadKeyName)"
-         self.loadedUrls.append(url)
-         
-         if self.tempIndex == self.loadedImages.count {
-         //                    MBProgressHUD.hideAllHUDsForView(self.view, animated: false)
-         //                    self.loadingNotification = nil
-         
-         self.loadedImages.removeAll()
-         println("Upload successful")
-         self.delegate?.donePicking(self, didPickedUrls: self.loadedUrls)
-         } else {
-         println("Moving to next upload")
-         self.doUpload()
-         }
-         
-         }
-         return nil
-         }
-         
-         */
-        //remove this code when you activate above commented code
-        //self.delegate?.donePicking(self, didPickedUrls: self.loadedUrls)
-        
-    }
-    
-}
 
 
 
