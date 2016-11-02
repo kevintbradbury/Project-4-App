@@ -12,6 +12,8 @@
 		0A71E2A71DC8FE9100DFB45B /* Mi_Memoir_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2A61DC8FE9100DFB45B /* Mi_Memoir_AppTests.swift */; };
 		0A71E2AF1DC8FEDE00DFB45B /* SHA1_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2AE1DC8FEDE00DFB45B /* SHA1_Test.swift */; };
 		0A71E2B11DC9516200DFB45B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A71E2B01DC9516200DFB45B /* ImagePicker.swift */; };
+		0A71E2B61DC995DF00DFB45B /* photos-on-desk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A71E2B41DC995DF00DFB45B /* photos-on-desk.jpg */; };
+		0A71E2B71DC995DF00DFB45B /* photos-box.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A71E2B51DC995DF00DFB45B /* photos-box.jpg */; };
 		0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */; };
 		0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */; };
 		0A9DA95F1DBFBBAA00B37581 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9DA95D1DBFBBAA00B37581 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 		0A71E2A81DC8FE9100DFB45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A71E2AE1DC8FEDE00DFB45B /* SHA1_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA1_Test.swift; sourceTree = "<group>"; };
 		0A71E2B01DC9516200DFB45B /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0A71E2B41DC995DF00DFB45B /* photos-on-desk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "photos-on-desk.jpg"; path = "Pictures/photos-on-desk.jpg"; sourceTree = "<group>"; };
+		0A71E2B51DC995DF00DFB45B /* photos-box.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "photos-box.jpg"; path = "Pictures/photos-box.jpg"; sourceTree = "<group>"; };
 		0A9DA9561DBFBBAA00B37581 /* Mi-Memoir-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mi-Memoir-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A9DA95B1DBFBBAA00B37581 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		0AE55C551DC119620036C94B /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				0A71E2B41DC995DF00DFB45B /* photos-on-desk.jpg */,
+				0A71E2B51DC995DF00DFB45B /* photos-box.jpg */,
 				0AE55C4D1DC119570036C94B /* mic.png */,
 				0AE55C4E1DC119570036C94B /* video.png */,
 				0AE55C4F1DC119570036C94B /* notes.png */,
@@ -273,8 +279,10 @@
 			files = (
 				0A9DA9671DBFBBAA00B37581 /* LaunchScreen.storyboard in Resources */,
 				0A9DA9641DBFBBAA00B37581 /* Assets.xcassets in Resources */,
+				0A71E2B71DC995DF00DFB45B /* photos-box.jpg in Resources */,
 				0A9DA95F1DBFBBAA00B37581 /* Main.storyboard in Resources */,
 				0AE55C531DC119570036C94B /* notes.png in Resources */,
+				0A71E2B61DC995DF00DFB45B /* photos-on-desk.jpg in Resources */,
 				0AE55C521DC119570036C94B /* video.png in Resources */,
 				0AE55C541DC119570036C94B /* photo-library.png in Resources */,
 				0AE55C511DC119570036C94B /* mic.png in Resources */,

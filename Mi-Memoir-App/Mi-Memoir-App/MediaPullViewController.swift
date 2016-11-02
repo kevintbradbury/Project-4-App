@@ -28,6 +28,12 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         present(picker, animated: true, completion: nil)
         
     }
+    @IBOutlet weak var uploadPhotoButton: UIButton!
+    @IBAction func uploadPhotoAction(_ sender: Any) {
+    
+        uploadPhotos()
+        
+    }
     
     
     
@@ -94,7 +100,11 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         let sha1EncodedString = secretKeyReqstDictionary?.secretKey.sha1()
         
-        let utf8String = "PUT\n" + "\n" + "image/jpg\n" + "Fri, 30 Jan 2015 12:15:45 GMT\n" + "x-amz-security-token: \(secretKeyReqstDictionary?.sessionId)\n" + "/\(secretKeyReqstDictionary?.uploadUrl)/;\(photoPathsArray[0])"
+        let sessionID = secretKeyReqstDictionary?.sessionId
+        
+        let accessKeyID = secretKeyReqstDictionary?.accessKeyId
+        
+        let utf8String = "PUT\n" + "\n" + "image/jpg\n" + "Fri, 30 Jan 2015 12:15:45 GMT\n" + "x-amz-security-token: \(sessionID)\n" + "/\(uploadURL)/;\(photoPathsArray[0])"
         
         let hmac = "$signature= hash_hmac('sha1', " + utf8String + "," + sha1EncodedString! + ", true);"
         
@@ -104,16 +114,17 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         let signedEncodedData = "$signedEncodedData = base64_encode(\(base64String));"
         
-        let authorizationfield = "$AuthValue = " + "AWS" + secretKeyReqstDictionary?.accessKeyId + ":" + signedEncodedData + ";"
+        // let authorizationfield = "$AuthValue = " + "AWS" + accessKeyID + ":" + signedEncodedData + ";"
         
-//        let photoUploadParameters = "PUT /myImage_01_30_2015_12154510.jpg HTTP/1.1",
-//        "Host:" : "\(secretKeyReqstDictionary?.upload)"
-//        Date: Fri, 30 Jan 2015 12:15:45 GMT
-//        Authorization: $AuthValue
-//        Content-Type: image/jpg
-//        Content-Length: 11434
-//        Expect: 100-continue
-//        x-amz-security-token: SESSION_ID"
+        let photoUploadParameters = [
+            "PUT" : "/myImage_01_30_2015_12154510.jpg HTTP/1.1",
+            "Host:" : "\(uploadURL)",
+            "Date:" : "Fri, 30 Jan 2015 12:15:45 GMT",
+            "Authorization:" : "\(signedEncodedData)",
+            "Content-Type:":  "image/jpg",
+            "Content-Length:" : "11434",
+            "Expect:": "100-continue",
+            "x-amz-security-token:" : "\(sessionID)"]
         
         //Image Data
         let imageData = UIImageJPEGRepresentation(cellImage[0], 1)
@@ -127,7 +138,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         let session = URLSession.shared
         
         request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: hmac, options: [])
+        request.httpBody = try? JSONSerialization.data(withJSONObject: photoUploadParameters, options: [])
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -148,9 +159,9 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         cellImage.append(image)
         
-        guard let imageString = info[UIImagePickerControllerOriginalImage] as? String else { return }
-        
-        photoPathsArray.append(imageString)
+//        guard let imageString = info[UIImagePickerControllerOriginalImage] as? String else { return }
+//        
+//        photoPathsArray.append(imageString)
         
         collectionView.reloadData()
 //        dismiss(animated: true, completion: nil)
