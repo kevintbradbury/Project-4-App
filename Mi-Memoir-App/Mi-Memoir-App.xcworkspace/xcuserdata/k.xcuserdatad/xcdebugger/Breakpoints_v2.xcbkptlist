@@ -10,29 +10,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mi-Memoir-App/MediaPullViewController.swift"
-            timestampString = "499751614.993996"
+            timestampString = "499837218.943692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "uploadPhotos()"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "urlCall()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mi-Memoir-App/MediaPullViewController.swift"
-            timestampString = "499751614.993996"
+            timestampString = "499837218.943692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "urlCall()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mi_Memoir_App.MediaPullerView.urlCall () -&gt; Swift.Bool"
+                  moduleName = "Mi-Memoir-App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/k/Documents/Repositories/GA-iOS/MyProjects/Project-4-App/Mi-Memoir-App/Mi-Memoir-App/MediaPullViewController.swift"
+                  timestampString = "499837219.368251"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "1168">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mi_Memoir_App.MediaPullerView.(urlCall () -&gt; Swift.Bool).(closure #1)"
+                  moduleName = "Mi-Memoir-App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/k/Documents/Repositories/GA-iOS/MyProjects/Project-4-App/Mi-Memoir-App/Mi-Memoir-App/MediaPullViewController.swift"
+                  timestampString = "499837219.370165"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "696">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
