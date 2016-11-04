@@ -31,8 +31,13 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var uploadPhotoButton: UIButton!
     @IBAction func uploadPhotoAction(_ sender: Any) {
         
-        hmacSHA1encoding()
-        urlCall()
+        putURL()
+        getImageURLs()
+        
+        print(imageURLs)
+        
+        getSecureURL()
+    
         
     }
     
@@ -62,13 +67,18 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     var urlToCall = ""
     var cellImage: [UIImage] = []
-    var parameters: [String: String] = [:]
+    var parameters: [String: Any] = [:]
     var httpMethod = ""
     var utf8String = ""
     var authorizationfield = ""
     let sha1EncodedString = secretKeyReqstDictionary?.secretKey.sha1()
     let sessionID = secretKeyReqstDictionary?.sessionId
     let accessKeyID = secretKeyReqstDictionary?.accessKeyId
+    var imagePath = ""
+    var queryStringForimageURL = ""
+    var walgreensURL = "http://pod-qa.walgreens.com/"
+    var imageURLs: [String] = []
+    var imageAssetArray: [String] = []
     
     
     // Talk to the web ------------------------
@@ -122,9 +132,6 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     func putURL() {
         
-        let imageAsset = cellImage[0].imageAsset
-        let imagePath = "\(imageAsset)"
-
         utf8String = "PUT\n \n image/jpg\n Fri, 30 Jan 2015 12:15:45 GMT\n x-amz-security-token: \(sessionID)\n /\(urlToCall)/;\(imagePath)"
         
         parameters = [
@@ -143,15 +150,13 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     func getSecureURL() {
         
-        let imageAsset = cellImage[0].imageAsset
-        let imagePath = "\(imageAsset)"
-        
+        utf8String = "GET\n \n image/jpg \n EXPIRATION_TIME \n x-amz-security-token: \(sessionID) \n/ \(urlToCall) / image-TIMESTAMP.jpg"
         
         parameters = ["GET\n" : "\n",
                       "image/jpg\n" : "",
                       "EXPIRATION_TIME\n" : "",
                       "x-amz-security-token:" : "\(secretKeyReqstDictionary?.sessionId)\n",
-            "/uploadUrl/myImage_01_30_2015_12154510.jpg" : ""]
+            "/uploadUrl/\(imagePath)_\(NSDate()).jpg" : ""]
         
         httpMethod = "GET"
         
@@ -164,7 +169,6 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         //        let imageData = UIImageJPEGRepresentation(cellImage[0], 1)
         //        let base64ImageString = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
         
-        
         guard let hmac = "$signature= hash_hmac('sha1', \(utf8String),\(sha1EncodedString), true);" as String! else {return}
         guard let hmacData = hmac.data(using: String.Encoding.utf8) else {return}
         guard let base64String = hmacData.base64EncodedData(options: []) as Data? else {return}
@@ -172,9 +176,29 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         let signedEncodedData = "$signedEncodedData = base64_encode(\(base64String));"
         let authorizationfield = "$AuthValue = AWS \(accessKeyID) : \(signedEncodedData);"
         
+        print("authorizationfield: \(authorizationfield)")
+        
+        queryStringForimageURL = "?Expires=: \(NSTimeIntervalSince1970 + 111600) &AWSAccessKeyId= \(accessKeyID) &x-amz-security-token= \(sessionID) &Signature= \(signedEncodedData)"
+    }
+    
+    
+    
+    func getImageURLs() {
+        
+        for index in cellImage {
+            guard let imageAsset = index.imageAsset else {return}
+            imagePath = "\(imageAsset)"
+            imageAssetArray.append(imagePath)
+            
+            hmacSHA1encoding()
+            urlCall()
+        }
+        
     }
     
     func urlCall() -> Bool {
+        
+        imageURLs.append(walgreensURL + imagePath + queryStringForimageURL)
         
         let url = URL(string: urlToCall)
         var request = URLRequest.init(url: url!)
@@ -190,16 +214,47 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         let dataTask = session.dataTask(with: request) {(data, response, error) -> Void in
             
             guard let unwrappedData = data else { return }
+            
             guard let jsonDictionary = (try? JSONSerialization.jsonObject(with: unwrappedData, options: [])) as? NSDictionary else { return }
             
-            print(jsonDictionary)
+            print("urlCall func - json response is: \(jsonDictionary)")
             
         }
         dataTask.resume()
         return true
     }
     
-    
+    func sendingImagesAndPersonInfo() {
+        
+        parameters = [
+            "apiKey" : "API_KEY",
+            "affId" : "AFFILIATE_ID",
+            "transaction" : "photoCheckoutv2",
+            "expiryTime" : "EXPIRATION_TIME",
+            "act":"mweb5UrlV2",
+            "view":"mweb5UrlV2JSON",
+            "devinf":"iPhone,6.1",
+            "appver":"3.1",
+            "lat":"42.165526",
+            "lng":"-87.847672",
+            "callBackLink":"http://localhost/callback" ,
+            "channelInfo":"web",
+            "publisherId":"PUBLISHER_ID",
+            "prodGroupId":"Product Group ID specifies the type of photo product on the landing page",
+            "affNotes":"If additional notes need to be sent",
+            "images": [
+                "Array of Image URL's",
+                "..."
+            ],
+            "customer": [
+                "firstName":"John",
+                "lastName":"Smith",
+                "email":"api@test.com",
+                "phone":"5555555555",
+            ]
+        ]
+        
+    }
     
     //Get Photos ----------------------------
     
