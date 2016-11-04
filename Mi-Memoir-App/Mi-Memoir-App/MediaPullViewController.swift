@@ -31,13 +31,13 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var uploadPhotoButton: UIButton!
     @IBAction func uploadPhotoAction(_ sender: Any) {
         
+
         putURL()
         getImageURLs()
         
-        print(imageURLs)
+        print("imageURLs are : \(imageURLs)")
         
         getSecureURL()
-    
         
     }
     
@@ -45,19 +45,17 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         super.viewDidLoad()
         
         postSecretKeyRequest()
-        collectionView.reloadData()
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
-        
         cellImage.append(image)
         
-        //        guard let imageString = info[UIImagePickerControllerOriginalImage] as? String else { return }
-        //
-        //        photoPathsArray.append(imageString)
+        guard let imageReferenceURL = info[UIImagePickerControllerReferenceURL] as? URL else {return}
+        imagePathsArray.append(imageReferenceURL)
+        
+        print("imagePathsArray is : \(imagePathsArray)")
         
         collectionView.reloadData()
         //        dismiss(animated: true, completion: nil)
@@ -67,11 +65,12 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     var urlToCall = ""
     var cellImage: [UIImage] = []
+    var imagePathsArray: [URL] = []
     var parameters: [String: Any] = [:]
     var httpMethod = ""
     var utf8String = ""
     var authorizationfield = ""
-    let sha1EncodedString = secretKeyReqstDictionary?.secretKey.sha1()
+    var sha1EncodedString = secretKeyReqstDictionary?.secretKey
     let sessionID = secretKeyReqstDictionary?.sessionId
     let accessKeyID = secretKeyReqstDictionary?.accessKeyId
     var imagePath = ""
@@ -123,6 +122,8 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
             
             guard (secretKeyReqstDictionary != nil) else { return }
             
+            print("secret key request dictionary is : --> \(secretKeyReqstDictionary) ")
+            
         }
         dataTask.resume()
         return true
@@ -162,6 +163,25 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
     }
     
+//    func sha1Encrypting(data: URLRequest) -> String? {
+//        
+//        var data = URLRequest.init(url: secretKeyReqstDictionary?.secretKey)
+//        
+//        
+//        data = data(using: String.Encoding.utf8)
+//        (using: String.Encoding.utf8)
+//        print(" data is : \(data) ")
+//        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+//        print("digest is : \(digest) ")
+//        data.withUnsafeBytes {
+//            _ = CC_SHA1($0, CC_LONG(data.count), &digest)
+//        }
+//        
+//        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+//        print(" hexbytes is : \(hexBytes) ")
+//        return hexBytes.joined()
+//    }
+    
     func hmacSHA1encoding() {
         
         urlToCall = secretKeyReqstDictionary!.uploadUrl
@@ -169,26 +189,35 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         //        let imageData = UIImageJPEGRepresentation(cellImage[0], 1)
         //        let base64ImageString = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
         
+        sha1EncodedString?.sha1()
+        
+        print("sha1encodedstring is : \(sha1EncodedString)")
+        
+        guard (sha1EncodedString != nil) else {return}
+        guard (sessionID != nil) else {return}
+        guard (accessKeyID != nil) else {return}
+        
         guard let hmac = "$signature= hash_hmac('sha1', \(utf8String),\(sha1EncodedString), true);" as String! else {return}
         guard let hmacData = hmac.data(using: String.Encoding.utf8) else {return}
-        guard let base64String = hmacData.base64EncodedData(options: []) as Data? else {return}
+        print("hmacData is: \(hmacData)")
+        guard let base64String = hmacData.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters) as String? else {return}
         
-        let signedEncodedData = "$signedEncodedData = base64_encode(\(base64String));"
-        let authorizationfield = "$AuthValue = AWS \(accessKeyID) : \(signedEncodedData);"
+        print("base64String is: \(base64String)")
         
-        print("authorizationfield: \(authorizationfield)")
+        let signedEncodedData = "$signedEncodedData = base64_encode(" + base64String + ");"
+        let authorizationfield = "$AuthValue = AWS \(accessKeyID) : " + signedEncodedData + ";"
         
-        queryStringForimageURL = "?Expires=: \(NSTimeIntervalSince1970 + 111600) &AWSAccessKeyId= \(accessKeyID) &x-amz-security-token= \(sessionID) &Signature= \(signedEncodedData)"
+        queryStringForimageURL = "?Expires=: \(NSTimeIntervalSince1970 + 111600) &AWSAccessKeyId= \(accessKeyID) &x-amz-security-token= \(sessionID) &Signature= " + signedEncodedData
     }
     
     
     
     func getImageURLs() {
         
-        for index in cellImage {
-            guard let imageAsset = index.imageAsset else {return}
-            imagePath = "\(imageAsset)"
-            imageAssetArray.append(imagePath)
+        for index in imagePathsArray {
+            guard let localImage = index as? URL else {return}
+            imagePath = String(describing: localImage)
+            print("image path is" + imagePath)
             
             hmacSHA1encoding()
             urlCall()
@@ -199,6 +228,8 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     func urlCall() -> Bool {
         
         imageURLs.append(walgreensURL + imagePath + queryStringForimageURL)
+        
+        print("image URLs is : \(imageURLs)" )
         
         let url = URL(string: urlToCall)
         var request = URLRequest.init(url: url!)
