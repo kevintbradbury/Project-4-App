@@ -15,6 +15,8 @@ import FBSDKLoginKit
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var skipLoginButton: UIButton!
+    
     let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
         button.readPermissions = ["email"]
@@ -30,8 +32,11 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if let token = FBSDKAccessToken.current() {
             fetchProfile()
+            
+            print("Facebook Access Token is: \(token) ")
         }
-        
+                
+        skipLoginButton.layer.cornerRadius = 10
     }
     
     func fetchProfile() {

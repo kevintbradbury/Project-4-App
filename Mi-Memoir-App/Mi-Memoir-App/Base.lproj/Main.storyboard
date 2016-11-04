@@ -49,6 +49,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="skipLoginButton" destination="Cte-Fp-u7d" id="BUI-fl-aTZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,6 +141,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0e-CV-8rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1848.8" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h0D-mR-mS9">
+            <objects>
+                <viewController id="Z7o-5J-bxh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zpM-MC-yQk"/>
+                        <viewControllerLayoutGuide type="bottom" id="TCm-kg-rjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hoF-bC-EfW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LkQ-mq-UMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2764" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gjd-In-ooz">

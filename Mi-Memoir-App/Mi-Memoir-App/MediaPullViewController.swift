@@ -31,7 +31,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var uploadPhotoButton: UIButton!
     @IBAction func uploadPhotoAction(_ sender: Any) {
         
-
+        
         putURL()
         getImageURLs()
         
@@ -43,8 +43,9 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.layer.cornerRadius = 10
         postSecretKeyRequest()
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -162,25 +163,27 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         httpMethod = "GET"
         
     }
+
     
-//    func sha1Encrypting(data: URLRequest) -> String? {
-//        
-//        var data = URLRequest.init(url: secretKeyReqstDictionary?.secretKey)
-//        
-//        
-//        data = data(using: String.Encoding.utf8)
-//        (using: String.Encoding.utf8)
-//        print(" data is : \(data) ")
-//        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-//        print("digest is : \(digest) ")
-//        data.withUnsafeBytes {
-//            _ = CC_SHA1($0, CC_LONG(data.count), &digest)
-//        }
-//        
-//        let hexBytes = digest.map { String(format: "%02hhx", $0) }
-//        print(" hexbytes is : \(hexBytes) ")
-//        return hexBytes.joined()
-//    }
+    
+    //    func sha1Encrypting(data: URLRequest) -> String? {
+    //
+    //        var data = URLRequest.init(url: secretKeyReqstDictionary?.secretKey)
+    //
+    //
+    //        data = data(using: String.Encoding.utf8)
+    //        (using: String.Encoding.utf8)
+    //        print(" data is : \(data) ")
+    //        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+    //        print("digest is : \(digest) ")
+    //        data.withUnsafeBytes {
+    //            _ = CC_SHA1($0, CC_LONG(data.count), &digest)
+    //        }
+    //
+    //        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+    //        print(" hexbytes is : \(hexBytes) ")
+    //        return hexBytes.joined()
+    //    }
     
     func hmacSHA1encoding() {
         
@@ -189,7 +192,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         //        let imageData = UIImageJPEGRepresentation(cellImage[0], 1)
         //        let base64ImageString = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
         
-        sha1EncodedString?.sha1()
+        sha1EncodedString = "d44685bb6ea2d9d2c5fb0bc493ffcdf3aa71e403"
         
         print("sha1encodedstring is : \(sha1EncodedString)")
         
@@ -199,7 +202,9 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         guard let hmac = "$signature= hash_hmac('sha1', \(utf8String),\(sha1EncodedString), true);" as String! else {return}
         guard let hmacData = hmac.data(using: String.Encoding.utf8) else {return}
+        
         print("hmacData is: \(hmacData)")
+        
         guard let base64String = hmacData.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters) as String? else {return}
         
         print("base64String is: \(base64String)")
@@ -303,6 +308,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
+        cell.layer.cornerRadius = 10
         cell.imageView?.image = self.cellImage[indexPath.row]
         
         return cell
