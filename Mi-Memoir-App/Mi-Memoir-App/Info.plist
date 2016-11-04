@@ -49,6 +49,8 @@
 	<string>Allows the app to access your photos to upload to the Walgreens Server</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allows the app to access your photos to upload to the Walgreens Server</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allows us to pinpoint nearest Walgreens location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
