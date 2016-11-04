@@ -308,7 +308,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
         cell.imageView?.image = self.cellImage[indexPath.row]
         
         return cell

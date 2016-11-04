@@ -36,7 +36,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Facebook Access Token is: \(token) ")
         }
                 
-        skipLoginButton.layer.cornerRadius = 10
+        skipLoginButton.layer.cornerRadius = 15
     }
     
     func fetchProfile() {

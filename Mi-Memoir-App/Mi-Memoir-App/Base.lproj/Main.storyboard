@@ -38,13 +38,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mi Memoir" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRU-wP-hf9">
-                                <rect key="frame" x="0.0" y="19" width="375" height="136"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="shadowOffset" width="2" height="2"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,7 +75,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UuB-Xl-7Bs">
-                                <rect key="frame" x="16" y="148" width="343" height="451"/>
+                                <rect key="frame" x="16" y="123" width="343" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.19622217465753425" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="ute-dd-9pp">
@@ -112,20 +113,32 @@
                                     <outlet property="delegate" destination="pUl-Rw-yLR" id="ht9-Za-cpW"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRy-Ww-cRj">
-                                <rect key="frame" x="88" y="72" width="200" height="50"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="upload.png" translatesAutoresizingMaskIntoConstraints="NO" id="hGd-JT-9Rk">
+                                <rect key="frame" x="66" y="582" width="94" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Photo"/>
-                                <connections>
-                                    <action selector="addPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="Xjm-qt-odR"/>
-                                </connections>
-                            </button>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYL-HQ-BuX">
-                                <rect key="frame" x="90" y="609" width="200" height="50"/>
+                                <rect key="frame" x="66" y="582" width="94" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload Image(s)"/>
                                 <connections>
                                     <action selector="uploadPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="rsL-ck-S2e"/>
+                                    <segue destination="Z7o-5J-bxh" kind="show" id="V7V-OL-EzT"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uAH-Ql-oIv">
+                                <rect key="frame" x="221" y="580" width="94" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.96470588239999999" blue="0.96078431369999995" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.023325950460000001" green="0.28218380990000003" blue="0.75735647620000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRy-Ww-cRj">
+                                <rect key="frame" x="221" y="580" width="94" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Photo"/>
+                                <connections>
+                                    <action selector="addPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="Xjm-qt-odR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -153,6 +166,12 @@
                     <view key="view" contentMode="scaleToFill" id="hoF-bC-EfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photos-on-desk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vXg-51-l8Q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -180,7 +199,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_photo.png" width="700" height="700"/>
         <image name="photos-box.jpg" width="3648" height="5472"/>
         <image name="photos-on-desk.jpg" width="5699" height="3907"/>
+        <image name="upload.png" width="700" height="700"/>
     </resources>
 </document>
