@@ -41,12 +41,18 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         
     }
     
+    @IBOutlet weak var addPhotoImage: UIImageView!
+    @IBOutlet weak var uploadImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.layer.cornerRadius = 10
+        collectionView.layer.cornerRadius = 15
+        addPhotoImage.layer.cornerRadius = 15
+        uploadImage.layer.cornerRadius = 15
         postSecretKeyRequest()
         
     }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -260,37 +266,7 @@ class MediaPullerView: UIViewController, UIImagePickerControllerDelegate, UINavi
         return true
     }
     
-    func sendingImagesAndPersonInfo() {
-        
-        parameters = [
-            "apiKey" : "API_KEY",
-            "affId" : "AFFILIATE_ID",
-            "transaction" : "photoCheckoutv2",
-            "expiryTime" : "EXPIRATION_TIME",
-            "act":"mweb5UrlV2",
-            "view":"mweb5UrlV2JSON",
-            "devinf":"iPhone,6.1",
-            "appver":"3.1",
-            "lat":"42.165526",
-            "lng":"-87.847672",
-            "callBackLink":"http://localhost/callback" ,
-            "channelInfo":"web",
-            "publisherId":"PUBLISHER_ID",
-            "prodGroupId":"Product Group ID specifies the type of photo product on the landing page",
-            "affNotes":"If additional notes need to be sent",
-            "images": [
-                "Array of Image URL's",
-                "..."
-            ],
-            "customer": [
-                "firstName":"John",
-                "lastName":"Smith",
-                "email":"api@test.com",
-                "phone":"5555555555",
-            ]
-        ]
-        
-    }
+    
     
     //Get Photos ----------------------------
     

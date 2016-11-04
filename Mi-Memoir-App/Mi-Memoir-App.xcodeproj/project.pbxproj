@@ -22,6 +22,7 @@
 		0AB6BAFC1DCC777C007FFE0B /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AB6BAF91DCC777C007FFE0B /* upload.png */; };
 		0AB6BAFD1DCC777C007FFE0B /* add_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AB6BAFA1DCC777C007FFE0B /* add_photo.png */; };
 		0AB6BAFE1DCC777C007FFE0B /* printer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AB6BAFB1DCC777C007FFE0B /* printer.png */; };
+		0AB6BB001DCC7EEA007FFE0B /* InfoEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB6BAFF1DCC7EEA007FFE0B /* InfoEntryViewController.swift */; };
 		0AE55C4B1DC042210036C94B /* MediaPullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE55C4A1DC042210036C94B /* MediaPullViewController.swift */; };
 		0AE55C511DC119570036C94B /* mic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE55C4D1DC119570036C94B /* mic.png */; };
 		0AE55C521DC119570036C94B /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE55C4E1DC119570036C94B /* video.png */; };
@@ -62,6 +63,7 @@
 		0AB6BAF91DCC777C007FFE0B /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = Pictures/upload.png; sourceTree = "<group>"; };
 		0AB6BAFA1DCC777C007FFE0B /* add_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add_photo.png; path = Pictures/add_photo.png; sourceTree = "<group>"; };
 		0AB6BAFB1DCC777C007FFE0B /* printer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = printer.png; path = Pictures/printer.png; sourceTree = "<group>"; };
+		0AB6BAFF1DCC7EEA007FFE0B /* InfoEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoEntryViewController.swift; path = ../InfoEntryViewController.swift; sourceTree = "<group>"; };
 		0AE55C4A1DC042210036C94B /* MediaPullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPullViewController.swift; sourceTree = "<group>"; };
 		0AE55C4C1DC04C3F0036C94B /* Mi-Memoir-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Mi-Memoir-App.entitlements"; sourceTree = "<group>"; };
 		0AE55C4D1DC119570036C94B /* mic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mic.png; path = Pictures/mic.png; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				0AE55C4C1DC04C3F0036C94B /* Mi-Memoir-App.entitlements */,
 				0A9DA9591DBFBBAA00B37581 /* AppDelegate.swift */,
+				0AB6BAFF1DCC7EEA007FFE0B /* InfoEntryViewController.swift */,
 				0AE55C4A1DC042210036C94B /* MediaPullViewController.swift */,
 				0AF0BC4C1DC82DEA0003814F /* Strings+.swift */,
 				0A35BE631DC59137000ECF1C /* CollectionViewCell.swift */,
@@ -372,6 +375,7 @@
 				0AE55C4B1DC042210036C94B /* MediaPullViewController.swift in Sources */,
 				0A9DA95C1DBFBBAA00B37581 /* ViewController.swift in Sources */,
 				0AF7DBDC1DCBD9AC000B52BA /* tempo.swift in Sources */,
+				0AB6BB001DCC7EEA007FFE0B /* InfoEntryViewController.swift in Sources */,
 				0A35BE641DC59137000ECF1C /* CollectionViewCell.swift in Sources */,
 				0A9DA95A1DBFBBAA00B37581 /* AppDelegate.swift in Sources */,
 				0A35BE621DC588CB000ECF1C /* SecretKeyRequest.swift in Sources */,

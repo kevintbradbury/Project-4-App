@@ -51,6 +51,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="miMemoir" destination="hRU-wP-hf9" id="ng8-oS-6ec"/>
                         <outlet property="skipLoginButton" destination="Cte-Fp-u7d" id="BUI-fl-aTZ"/>
                     </connections>
                 </viewController>
@@ -121,7 +122,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYL-HQ-BuX">
                                 <rect key="frame" x="66" y="582" width="94" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload Image(s)"/>
+                                <state key="normal" title="Upload Image(s)">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="uploadPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="rsL-ck-S2e"/>
                                     <segue destination="Z7o-5J-bxh" kind="show" id="V7V-OL-EzT"/>
@@ -136,7 +139,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRy-Ww-cRj">
                                 <rect key="frame" x="221" y="580" width="94" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Photo"/>
+                                <state key="normal" title="Add Photo">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="addPhotoAction:" destination="pUl-Rw-yLR" eventType="touchUpInside" id="Xjm-qt-odR"/>
                                 </connections>
@@ -144,10 +149,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XC2-o5-McK"/>
+                    <navigationItem key="navigationItem" prompt="Select photos you want to upload, then get started!" id="XC2-o5-McK"/>
                     <connections>
                         <outlet property="addPhotoButton" destination="MRy-Ww-cRj" id="cJC-dH-cfa"/>
+                        <outlet property="addPhotoImage" destination="uAH-Ql-oIv" id="deD-Jc-gN1"/>
                         <outlet property="collectionView" destination="UuB-Xl-7Bs" id="4he-PV-aik"/>
+                        <outlet property="uploadImage" destination="hGd-JT-9Rk" id="nQx-Tt-dX0"/>
                         <outlet property="uploadPhotoButton" destination="zYL-HQ-BuX" id="4wu-D6-yfK"/>
                     </connections>
                 </viewController>
@@ -155,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="1848.8" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Info Entry View Controller-->
         <scene sceneID="h0D-mR-mS9">
             <objects>
-                <viewController id="Z7o-5J-bxh" sceneMemberID="viewController">
+                <viewController id="Z7o-5J-bxh" customClass="InfoEntryViewController" customModule="Mi_Memoir_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zpM-MC-yQk"/>
                         <viewControllerLayoutGuide type="bottom" id="TCm-kg-rjF"/>
@@ -171,13 +178,56 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H3y-ja-ocx">
+                                <rect key="frame" x="112" y="337" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uWb-bk-JZ9">
+                                <rect key="frame" x="112" y="261" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4G7-Cc-mIc">
+                                <rect key="frame" x="112" y="413" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3ur-EG-63V">
+                                <rect key="frame" x="112" y="185" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNv-8n-lh2">
+                                <rect key="frame" x="112" y="489" width="150" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.023325950460000001" green="0.28218380990000003" blue="0.75735647620000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTxtField" destination="H3y-ja-ocx" id="vjE-cA-yku"/>
+                        <outlet property="firstNameTxtField" destination="3ur-EG-63V" id="R8E-Ux-e8M"/>
+                        <outlet property="lastNameTxtField" destination="uWb-bk-JZ9" id="QyB-Rd-C6c"/>
+                        <outlet property="phoneTxtField" destination="4G7-Cc-mIc" id="KWq-j6-610"/>
+                        <outlet property="submitButton" destination="sNv-8n-lh2" id="51G-oX-DwW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LkQ-mq-UMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="139"/>
+            <point key="canvasLocation" x="2764" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gjd-In-ooz">
